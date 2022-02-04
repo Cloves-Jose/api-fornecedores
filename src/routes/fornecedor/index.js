@@ -1,4 +1,5 @@
 const roteador = require('express').Router()
+const roteadorProdutos = require('../produtos')
 const TabelaFornecedor = require('../../database/fornecedor/TabelaFornecedor')
 const Fornecedor = require('../../models/fornecedor/Fornecedor')
 const SerializadorFornecedor = require('../../helpers/Serializador').SerializadorFornecedor
@@ -77,5 +78,19 @@ roteador.delete('/:id', async(req, res, next) => {
     }
 })
 
+//Verificação do fornecedor
+const verificaFornecedor = async(req, res, next) => {
+    try {
+        const id = req.params.idFornecedor 
+        const fornecedor = new Fornecedor({id: id})
+        await fornecedor.listarPorId()
+        req.fornecedor = fornecedor
+        next()
+    } catch(erro) {
+        next(erro)
+    }
+}
+
+roteador.use('/:idFornecedor/produtos', verificaFornecedor, roteadorProdutos)
 
 module.exports = roteador
