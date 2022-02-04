@@ -38,7 +38,7 @@ class Serializador {
     filtrarObjeto(dados) {
         const novoObjeto = {}
 
-        this.camposPublicos.farEach((campo) => {
+        this.camposPublicos.forEach((campo) => {
             if(dados.hasOwnProperty(campo)) {
                 novoObjeto[campo] = dados[campo]
             }
@@ -68,7 +68,7 @@ class SerializadorFornecedor extends Serializador {
             'id',
             'nome',
             'email',
-            'telfone'
+            'telefone'
         ].concat(camposExtras || [])
         this.tagSingular = 'fornecedor'
         this.tagPlural = 'fornecedores'
@@ -83,7 +83,9 @@ class SerializadorProdutos extends Serializador {
             'id',
             'nome',
             'quantidade',
-        ]
+        ].concat(camposExtras || [])
+        this.tagSingular = 'produto'
+        this.tagPlural = 'produtos'
     }
 }
 
