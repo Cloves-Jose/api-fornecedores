@@ -71,7 +71,7 @@ class Fornecedor {
         const fornecedor = ['nome', 'email', 'telefone', 'categoria']
 
         fornecedor.forEach(campo => {
-            const valor = this.campo
+            const valor = this[campo]
 
             if(typeof valor !== 'string' || valor.length === 0) {
                 throw new CampoInvalido(campo)

@@ -34,7 +34,7 @@ const config = {
     tableName: 'tb_produtos',
     timestamp: true,
     createdAt: 'dataCriacao',
-    updatedAp: 'dataAtualizacao',
+    updatedAt: 'dataAtualizacao',
     version: 'versao'
 }
 
