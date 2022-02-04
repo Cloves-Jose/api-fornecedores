@@ -1,5 +1,6 @@
 const modelos = [
-    require('../database/fornecedor/ModeloTabelaFornecedor')
+    require('../database/fornecedor/ModeloTabelaFornecedor'),
+    require('../database/produtos/ModeloTabelaProdutos')
 ]
 
 async function criarTabelas() {
