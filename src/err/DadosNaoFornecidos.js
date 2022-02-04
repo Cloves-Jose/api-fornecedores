@@ -1,8 +1,7 @@
 class DadosNaoFornecidos extends Error {
-    constructor(erro) {
-        const mensagem = `Os dados de ${erro} não forma fornecidos`
-        super('mensagem')
-        this.name = 'CampoInvalido'
+    constructor() {
+        super('Não foram fornecidos dados para atualizar!')
+        this.name = 'DadosNaoFornecidos'
         this.idErro = 2
     }
 }

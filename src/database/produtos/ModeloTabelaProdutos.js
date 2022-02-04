@@ -4,15 +4,19 @@ const instancia = require('../../database/index')
 const colunas = {
     nome: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
     },
     quantidade: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: false
     },
     preco: {
         type: Sequelize.FLOAT,
-        allowNull: true
+        allowNull: false
+    },
+    categoria: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     //Relacionando com a tabela de fornecedores
     fornecedor: {
