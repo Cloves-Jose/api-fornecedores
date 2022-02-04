@@ -29,5 +29,14 @@ module.exports = {
             throw new NaoEncontrado('Produto')
         }
         return encontrado
+    },
+
+    atualizar(dadosDoProduto, dadosParaAtualizar) {
+        return Modelo.update(
+            dadosParaAtualizar,
+            {
+                where: dadosDoProduto
+            }
+        )
     }
 }

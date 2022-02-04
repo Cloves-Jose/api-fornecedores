@@ -1,4 +1,5 @@
 const TabelaProdutos = require('../../database/produtos/TabelaProdutos')
+const DadosNaoFornecidos = require('../../err/DadosNaoFornecidos')
 
 
 class Produtos {
@@ -25,6 +26,38 @@ class Produtos {
         this.dataCriacao = resultado.dataCriacao
         this.dataAtualizacao = resultado.dataAtualizacao,
         this.versao = resultado.versao
+    }
+
+    async atualizar() {
+        const dadosParaAtualizar = {}
+
+        if(typeof this.nome === 'string' && this.nome.length > 0) {
+            dadosParaAtualizar.nome = this.nome
+        }
+
+        if(typeof this.quantidade === 'number' && this.quantidade > 0) {
+            dadosParaAtualizar.quantidade = this.quantidade
+        }
+
+        if(typeof this.preco === 'number' && this.preco > 0) {
+            dadosParaAtualizar.preco = this.preco
+        }
+
+        if(typeof this.categoria === 'string' && this.categoria.length > 0) {
+            dadosParaAtualizar.categoria = this.categoria
+        }
+
+        if(Object.keys(dadosParaAtualizar).length === 0) {
+            throw new DadosNaoFornecidos()
+        }
+
+        return TabelaProdutos.atualizar(
+            {
+                id: this.id,
+                fornecedor: this.fornecedor
+            },
+            dadosParaAtualizar
+        )
     }
 
     async listarPeloId() {

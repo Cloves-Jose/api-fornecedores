@@ -64,4 +64,20 @@ roteador.get('/:id', async (req, res, next) => {
     }
 })
 
+roteador.put('/:id', async (req, res, next) => {
+    try{
+        const dados = Object.assign({}, req.body, {id: req.params.id, fornecedor: req.fornecedor.id})
+        const produto = new Produtos(dados)
+        await produto.atualizar()
+        await produto.listarPeloId()
+        res.set('ETag', produto.versao)
+        const timestamp = (new Date(produto.dataAtualizacao)).getTime()
+        res.set('Last-Modified', timestamp)
+        res.status(204)
+        res.end()
+    } catch(erro) {
+        next(erro)
+    }
+})
+
 module.exports = roteador
