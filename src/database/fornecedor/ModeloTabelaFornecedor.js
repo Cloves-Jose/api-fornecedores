@@ -13,6 +13,10 @@ const colunas = {
     telefone: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    categoria: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 }
 
